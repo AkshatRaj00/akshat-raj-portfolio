@@ -1,26 +1,449 @@
 @import "tailwindcss";
 
+/* Custom CSS Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar - Webkit browsers */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(243 244 246);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background-color: rgb(31 41 55);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(209 213 219);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgb(75 85 99);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(156 163 175);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(107 114 128);
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(156 163 175) rgb(243 244 246);
+}
+
+.dark * {
+  scrollbar-color: rgb(75 85 99) rgb(31 41 55);
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s infinite;
+}
+
+.animate-shine {
+  animation: shine 2s infinite;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, rgb(37 99 235), rgb(147 51 234), rgb(219 39 119));
+}
+
+.dark .gradient-text {
+  background-image: linear-gradient(to right, rgb(96 165 250), rgb(192 132 252), rgb(244 114 182));
+}
+
+.gradient-text-blue {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, rgb(37 99 235), rgb(8 145 178));
+}
+
+.dark .gradient-text-blue {
+  background-image: linear-gradient(to right, rgb(96 165 250), rgb(34 211 238));
+}
+
+/* Card Hover Effect */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  transform: translateY(-0.5rem);
+}
+
+/* Glass Effect */
+.glass {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.dark .glass {
+  background-color: rgba(17, 24, 39, 0.8);
+}
+
+/* Section Padding */
+.section-padding {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .section-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Container */
+.container-custom {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Button Styles */
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  background-color: rgb(37 99 235);
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: rgb(29 78 216);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  background-color: rgb(229 231 235);
+  color: rgb(17 24 39);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dark .btn-secondary {
+  background-color: rgb(31 41 55);
+  color: rgb(243 244 246);
+}
+
+.btn-secondary:hover {
+  background-color: rgb(209 213 219);
+}
+
+.dark .btn-secondary:hover {
+  background-color: rgb(55 65 81);
+}
+
+.btn-outline {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid rgb(37 99 235);
+  color: rgb(37 99 235);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dark .btn-outline {
+  border-color: rgb(96 165 250);
+  color: rgb(96 165 250);
+}
+
+.btn-outline:hover {
+  background-color: rgb(37 99 235);
+  color: white;
+}
+
+.dark .btn-outline:hover {
+  background-color: rgb(96 165 250);
+  color: rgb(17 24 39);
+}
+
+/* Input Styles */
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209 213 219);
+  background-color: white;
+  color: rgb(17 24 39);
+  transition: all 0.3s ease;
+}
+
+.dark .input-field {
+  border-color: rgb(55 65 81);
+  background-color: rgb(31 41 55);
+  color: rgb(243 244 246);
+}
+
+.input-field:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: rgb(59 130 246);
+}
+
+.dark .input-field:focus {
+  ring-color: rgb(96 165 250);
+}
+
+.textarea-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(209 213 219);
+  background-color: white;
+  color: rgb(17 24 39);
+  transition: all 0.3s ease;
+  resize: none;
+}
+
+.dark .textarea-field {
+  border-color: rgb(55 65 81);
+  background-color: rgb(31 41 55);
+  color: rgb(243 244 246);
+}
+
+.textarea-field:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: rgb(59 130 246);
+}
+
+.dark .textarea-field:focus {
+  ring-color: rgb(96 165 250);
+}
+
+/* Skill Bar */
+.skill-bar {
+  height: 0.5rem;
+  background-color: rgb(229 231 235);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.dark .skill-bar {
+  background-color: rgb(55 65 81);
+}
+
+.skill-progress {
+  height: 100%;
+  background-image: linear-gradient(to right, rgb(59 130 246), rgb(168 85 247));
+  border-radius: 9999px;
+  transition: all 1s ease-out;
+}
+
+/* Project Card */
+.project-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dark .project-card {
+  background-color: rgb(31 41 55);
+}
+
+.project-card:hover {
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  transform: translateY(-0.5rem);
+}
+
+/* Social Icon Hover */
+.social-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: rgb(229 231 235);
+  color: rgb(55 65 81);
+  transition: all 0.3s ease;
+}
+
+.dark .social-icon {
+  background-color: rgb(31 41 55);
+  color: rgb(209 213 219);
+}
+
+.social-icon:hover {
+  background-color: rgb(37 99 235);
+  color: white;
+  transform: scale(1.1);
+}
+
+.dark .social-icon:hover {
+  background-color: rgb(59 130 246);
+}
+
+/* Line Clamp Utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
