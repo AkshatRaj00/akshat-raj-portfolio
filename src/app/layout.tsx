@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code", // Add after Google Search Console setup
+    google: "RH9O2Hh04JSei2rjKD9P5ZnTPcitGa7HEHnq6ZXm2ew",
   },
   alternates: {
     canonical: "https://akshatraj.vercel.app",
@@ -102,6 +102,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#3B82F6" />
+        <meta name="google-site-verification" content="RH9O2Hh04JSei2rjKD9P5ZnTPcitGa7HEHnq6ZXm2ew" />
       </head>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider>
@@ -117,6 +118,5 @@ export default function RootLayout({
     </html>
   );
 }
-
 
 
